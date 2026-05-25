@@ -3,19 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uygulama İndirme Sayfası</title>
+    <title>CineX - Geleceğin Sinema Deneyimi</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f4f4f9; }
-        .btn { display: inline-block; padding: 15px 30px; font-size: 18px; color: #fff; background-color: #007bff; text-decoration: none; border-radius: 5px; margin-top: 20px; }
-        .btn:hover { background-color: #0056b3; }
+        :root {
+            --bg-color: #0a0a12;
+            --primary-neon: #00f0ff;
+            --secondary-neon: #ff007f;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Arka Plan Işımaları (Gelecek Hissiyatı İçin) */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(150px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        body::before {
+            top: 10%;
+            left: 10%;
+            background: var(--primary-neon);
+        }
+        body::after {
+            bottom: 10%;
+            right: 10%;
+            background: var(--secondary-neon);
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            text-align: center;
+            padding: 40px 20px;
+            z-index: 1;
+        }
+
+        /* Logo ve Başlık */
+        .logo {
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            animation: pulse 3s infinite alternate;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: #e0e0e3;
+        }
+
+        p.description {
+            font-size: 1.1rem;
+            color: #8a8a9e;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        /* Holografik Uygulama Önizleme Kartı */
+        .preview-box {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+            display: inline-block;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .preview-screen {
+            background: #11111d;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            text-align: left;
+        }
+
+        .preview-header {
+            color: var(--primary-neon);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .movie-bar {
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            border-left: 3px solid var(--secondary-neon);
+            font-size: 0.9rem;
+            color: #cdcdff;
+        }
+
+        /* Fütüristik İndirme Butonu */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px 45px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #000;
+            background: var(--primary-neon);
+            text-decoration: none;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn:hover {
+            background: var(--secondary-neon);
+            color: #fff;
+            box-shadow: 0 0 35px rgba(255, 0, 127, 0.6);
+            transform: translateY(-3px);
+        }
+
+        .version-badge {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #5a5a75;
+            letter-spacing: 1px;
+        }
+
+        /* Animasyonlar */
+        @keyframes pulse {
+            0% { filter: drop-shadow(0 0 2px rgba(0, 240, 255, 0.2)); }
+            100% { filter: drop-shadow(0 0 15px rgba(255, 0, 127, 0.6)); }
+        }
+
+        @media (max-width: 600px) {
+            .logo { font-size: 2.2rem; }
+            h1 { font-size: 1.6rem; }
+            .download-btn { width: 100%; padding: 18px 20px; font-size: 1rem; }
+        }
     </style>
 </head>
 <body>
-    <h1>Uygulamamızı İndirin</h1>
-    <p>En güncel sürümü aşağıdaki butona tıklayarak güvenle indirebilirsiniz.</p>
-    
-    <a href="https://josephmckennedy.github.io/sk-app-update/app-release.apk" class="btn">
-        APK İndir
-    </a>
+
+    <div class="container">
+        <div class="logo">CINEX</div>
+        <h1>Nöral Sinema Ağına Bağlan</h1>
+        <p class="description">
+            Klasik yayın akışlarını unutun. Yapay zeka destekli kişiselleştirilmiş akış, kuantum hızında indirme ve 8K HDR uzamsal ses deneyimi tek bir uygulamada toplandı.
+        </p>
+
+        <div class="preview-box">
+            <div class="preview-screen">
+                <div class="preview-header">
+                    <span>• CANLI AKIŞ SİSTEMİ</span>
+                    <span style="color: #4cd137;">ÇEVRİMİÇİ</span>
+                </div>
+                <div class="movie-bar">Blade Runner 2049 [NÖRAL AKTİF]</div>
+                <div class="movie-bar" style="border-left-color: var(--primary-neon);">Interstellar: Director's Cut</div>
+                <div class="movie-bar">Cyberpunk: Edgerunners S02</div>
+            </div>
+        </div>
+
+        <br>
+
+        <a href="https://josephmckennedy.github.io/sk-app-update/app-release.apk" class="download-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            SİSTEME GİRİŞ YAP (APK)
+        </a>
+
+        <div class="version-badge">Mevcut Çekirdek Sürümü: v1.0.1 // Android OS uyumlu</div>
+    </div>
+
 </body>
 </html>
