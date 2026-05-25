@@ -3,301 +3,486 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeyirKutusu - Geleceğin Sinema Deneyimi</title>
+    <title>SeyirKutusu - Sıradışı Sinema Deneyimi</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --bg-color: #06060c;
-            --primary-neon: #00f0ff;
-            --secondary-neon: #ff007f;
+            --bg-color: #08080a;
+            --card-bg: rgba(22, 22, 26, 0.7);
+            --primary-orange: #ff6a00;
+            --primary-gradient: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
             --text-color: #ffffff;
-            --card-bg: rgba(255, 255, 255, 0.02);
+            --text-muted: #a0a0a5;
+            --border-color: rgba(255, 106, 0, 0.15);
+            --glow-color: rgba(255, 106, 0, 0.4);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 106, 0, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(238, 9, 121, 0.04) 0%, transparent 45%);
+            background-attachment: fixed;
+        }
+
+        /* Header / Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 8%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8, 8, 10, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            -webkit-text-fill-color: initial;
+            color: var(--primary-orange);
+            text-shadow: 0 0 15px var(--glow-color);
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--primary-orange);
+            background: rgba(255, 106, 0, 0.1);
+            box-shadow: 0 0 15px rgba(255, 106, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            text-align: center;
+            padding: 120px 8% 60px 8%;
             position: relative;
         }
 
-        /* Nöral Ağ Canvası */
-        #neural-canvas {
+        .version-badge {
+            background: rgba(255, 106, 0, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-orange);
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 20px rgba(255, 106, 0, 0.05);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0.3); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 106, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 68px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            max-width: 900px;
+        }
+
+        .hero h1 span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .download-btn {
+            background: var(--primary-gradient);
+            color: #000;
+            font-weight: 800;
+            font-size: 18px;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 0 30px var(--glow-color);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 0 45px rgba(255, 106, 0, 0.6);
+            color: #000;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
-            pointer-events: all;
+            background: linear-gradient(180deg, rgba(255, 106, 0, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .container {
-            max-width: 1000px;
-            width: 90%;
-            text-align: center;
-            padding: 40px 20px;
-            z-index: 1;
-            background: rgba(6, 6, 12, 0.6);
-            border-radius: 24px;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-color);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 106, 0, 0.05);
         }
 
-        /* Logo ve Başlık */
-        .logo {
-            font-size: 3.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3));
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
-        h1 {
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            color: #e0e0e3;
-        }
-
-        p.description {
-            font-size: 1.1rem;
-            color: #8a8a9e;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            line-height: 1.6;
-        }
-
-        /* Holografik Önizleme Kartı */
-        .preview-box {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 240, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            margin-bottom: 40px;
-            display: inline-block;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .preview-screen {
-            background: #0b0b14;
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid rgba(255, 0, 127, 0.1);
-            text-align: left;
-        }
-
-        .preview-header {
-            color: var(--primary-neon);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 106, 0, 0.1);
+            border-radius: 16px;
             display: flex;
-            justify-content: space-between;
-        }
-
-        .movie-bar {
-            height: 40px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 6px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            padding-left: 15px;
-            border-left: 3px solid var(--secondary-neon);
-            font-size: 0.9rem;
-            color: #cdcdff;
-        }
-
-        /* Fütüristik İndirme Butonu */
-        .download-btn {
-            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-            padding: 20px 45px;
-            font-size: 1.2rem;
+            font-size: 24px;
+            color: var(--primary-orange);
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 106, 0, 0.1);
+            box-shadow: 0 0 15px rgba(255, 106, 0, 0.05);
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
             font-weight: 700;
-            color: #000;
-            background: var(--primary-neon);
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* Changelog Section */
+        .changelog-section {
+            padding: 80px 8%;
+            max-width: 800px;
+            margin: 0 auto 100px auto;
+            background: rgba(15, 15, 18, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 24px;
+            backdrop-filter: blur(15px);
+        }
+
+        .changelog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 20px;
+        }
+
+        .changelog-header h3 {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .changelog-list {
+            list-style: none;
+        }
+
+        .changelog-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 16px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .changelog-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--primary-orange);
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 8%;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--primary-orange);
             text-decoration: none;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.4s ease;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
-            cursor: pointer;
         }
 
-        .download-btn:hover {
-            background: var(--secondary-neon);
-            color: #fff;
-            box-shadow: 0 0 35px rgba(255, 0, 127, 0.6);
-            transform: translateY(-3px);
-        }
-
-        .version-badge {
-            margin-top: 20px;
-            font-size: 0.85rem;
-            color: #5a5a75;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 600px) {
-            .logo { font-size: 2.5rem; }
-            h1 { font-size: 1.4rem; }
-            .download-btn { width: 100%; padding: 18px 20px; font-size: 1rem; }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header {
+                padding: 16px 5%;
+            }
+            .hero {
+                padding-top: 140px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="neural-canvas"></canvas>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-box-open"></i> SeyirKutusu
+        </div>
+        <a href="https://github.com/josephmckennedy" target="_blank" class="nav-btn">
+            <i class="fa-brands fa-github"></i> GitHub
+        </a>
+    </header>
 
-    <div class="container">
-        <div class="logo">SeyirKutusu</div>
-        <h1>Nöral Sinema Ağına Bağlan</h1>
-        <p class="description">
-            Klasik yayın akışlarını unutun. Yapay zeka destekli kişiselleştirilmiş akış, kuantum hızında indirme ve üst düzey sinema deneyimi tek bir kutuda toplandı.
-        </p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="version-badge" id="versionBadge">
+            <i class="fa-solid fa-circle-nodes"></i> Denetleniyor...
+        </div>
+        <h1>Android TV & Mobil İçin<br><span>Sıradışı Sinema Kutusu</span></h1>
+        <p>Evinizdeki televizyonda veya cebinizdeki telefonda, en sevdiğiniz film ve dizileri kusursuz bir kumanda deneyimi ve otomatik altyazı/ses seçenekleriyle hemen izleyin.</p>
+        <a href="https://josephmckennedy.github.io/sk-app-update/app-release.apk" class="download-btn">
+            <i class="fa-solid fa-download"></i> Hemen APK İndir
+        </a>
+    </section>
 
-        <div class="preview-box">
-            <div class="preview-screen">
-                <div class="preview-header">
-                    <span>• SEYİR ÇEKİRDEĞİ</span>
-                    <span style="color: #00f0ff;">AKTİF</span>
-                </div>
-                <div class="movie-bar">Blade Runner 2049 [NÖRAL AKTİF]</div>
-                <div class="movie-bar" style="border-left-color: var(--primary-neon);">Interstellar: Director's Cut</div>
-                <div class="movie-bar">Cyberpunk: Edgerunners S02</div>
-            </div>
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="section-title">
+            <h2>Öne Çıkan Özellikler</h2>
+            <p>SeyirKutusu, televizyonunuzu fütüristik bir sinema merkezine dönüştürmek için tasarlandı.</p>
         </div>
 
-        <br>
+        <div class="features-grid">
+            <!-- Feature 1 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-tv"></i>
+                </div>
+                <h3>Android TV & Kumanda Uyumlu</h3>
+                <p>Leanback donanım hızlandırmalı odak aracı (D-Pad) sayesinde yatağınızdan kalkmadan yön tuşlarıyla tüm uygulamayı zahmetsizce yönetin.</p>
+            </div>
 
-        <a href="https://josephmckennedy.github.io/sk-app-update/app-release.apk" class="download-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            SİSTEME GİRİŞ YAP (APK)
-        </a>
+            <!-- Feature 2 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+                <h3>Gelişmiş ExoPlayer Oynatıcı</h3>
+                <p>Tek dokunuşla ekranı kaplama (Fit/Zoom/Stretch), dublaj/altyazı geçişleri ve kumandanın yön tuşlarıyla 10s ileri-geri sarma kolaylığı.</p>
+            </div>
 
-        <div class="version-badge">Mevcut Çekirdek Sürümü: v1.0.1 // Android OS</div>
-    </div>
+            <!-- Feature 3 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <h3>İzlemeye Devam Et & Geçmiş</h3>
+                <p>Nerede kaldığınızı saniyesine kadar hatırlar, kaldığınız yerden devam etmenizi sağlar. Arama geçmişiyle tek tıkla yeniden aratın.</p>
+            </div>
 
+            <!-- Feature 4 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                </div>
+                <h3>Uygulama İçi Otomatik Güncelleme</h3>
+                <p>Yeni bir güncelleme çıktığında uygulama sizi uyarır, indirme barı ile arka planda dosyayı çekip saniyeler içinde yeni sürüme kurar.</p>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+                <h3>İnteraktif Hikayeler & Keşfet</h3>
+                <p>Film detaylarına hızlıca göz atabileceğiniz fütüristik animasyonlu hikaye halkaları ve modunuza göre film öneren etiket paneli.</p>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3>Maksimum Donanım Optimizasyonu</h3>
+                <p>Gereksiz animasyon yüklerinden arındırılmış arayüz. En zayıf Android TV boxlarda bile kasmadan, akıcı çalışan arayüz motoru.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Changelog Section -->
+    <section class="changelog-section">
+        <div class="changelog-header">
+            <h3>Son Değişiklikler</h3>
+            <span id="versionText" style="font-weight: 600; color: var(--primary-orange)">Sürüm Yükleniyor...</span>
+        </div>
+        <ul class="changelog-list" id="changelogList">
+            <li>Detaylar sorgulanıyor...</li>
+        </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 SeyirKutusu. Tüm Hakları Saklıdır.</p>
+        <p style="margin-top: 10px; font-size: 12px; color: var(--text-muted)">
+            Bu proje açık kaynaklı olarak geliştirilmektedir. <a href="https://github.com/josephmckennedy" target="_blank">GitHub</a> üzerinden katkıda bulunabilirsiniz.
+        </p>
+    </footer>
+
+    <!-- JS to dynamic versioning from update.json -->
     <script>
-        const canvas = document.getElementById('neural-canvas');
-        const ctx = canvas.getContext('2d');
+        const UPDATE_JSON_URL = 'https://josephmckennedy.github.io/sk-app-update/update.json';
 
-        let particles = [];
-        const maxParticles = 80;
-        const connectionDist = 120;
-        let mouse = { x: null, y: null, radius: 150 };
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.6;
-                this.vy = (Math.random() - 0.5) * 0.6;
-                this.radius = Math.random() * 2 + 1;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-
-                // Mouse etkileşimi push/pull efekti
-                if (mouse.x != null && mouse.y != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < mouse.radius) {
-                        let force = (mouse.radius - dist) / mouse.radius;
-                        this.x -= (dx / dist) * force * 2;
-                        this.y -= (dy / dist) * force * 2;
+        async function fetchUpdateInfo() {
+            try {
+                const response = await fetch(UPDATE_JSON_URL);
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Update Version Badge
+                    const badge = document.getElementById('versionBadge');
+                    badge.innerHTML = `<i class="fa-solid fa-sparkles"></i> Son Sürüm: v${data.versionName}`;
+                    
+                    // Update Changelog Header Version Text
+                    const versionText = document.getElementById('versionText');
+                    versionText.innerText = `Sürüm v${data.versionName}`;
+                    
+                    // Update Changelog List
+                    const list = document.getElementById('changelogList');
+                    list.innerHTML = '';
+                    
+                    if (data.changelog && data.changelog.length > 0) {
+                        data.changelog.forEach(change => {
+                            const li = document.createElement('li');
+                            li.innerText = change;
+                            list.appendChild(li);
+                        });
+                    } else {
+                        list.innerHTML = '<li>Bu sürüm için detaylı değişiklik girilmemiştir.</li>';
                     }
                 }
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 240, 255, 0.7)';
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            particles = [];
-            for (let i = 0; i < maxParticles; i++) {
-                particles.push(new Particle());
+            } catch (error) {
+                console.error('Update bilgisi çekilemedi:', error);
+                document.getElementById('versionBadge').innerText = 'Sürüm: Bilinmiyor';
+                document.getElementById('versionText').innerText = 'Hata';
+                document.getElementById('changelogList').innerHTML = '<li>Sürüm notları şu an yüklenemedi.</li>';
             }
         }
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                for (let j = i + 1; j < particles.length; j++) {
-                    let dx = particles[i].x - particles[j].x;
-                    let dy = particles[i].y - particles[j].y;
-                    let dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < connectionDist) {
-                        let alpha = (1 - (dist / connectionDist)) * 0.25;
-                        // Geçişli renk çizgileri
-                        ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
+        // Run fetch on load
+        window.addEventListener('DOMContentLoaded', fetchUpdateInfo);
     </script>
 </body>
 </html>
