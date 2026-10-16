@@ -3,93 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeyirKutusu - Sıradışı Sinema Deneyimi</title>
-    <!-- Google Fonts: Outfit -->
+    <title>SeyirKutusu - Android TV & Mobil İçin Yeni Nesil Sinema Deneyimi</title>
+    
+    <!-- Meta Açıklamaları & SEO -->
+    <meta name="description" content="Android TV, TV Box ve mobil cihazlar için tasarlanmış en gelişmiş film & dizi izleme uygulaması. Kumanda uyumlu, çevrimdışı indirme ve yüksek kalite.">
+    <meta name="keywords" content="SeyirKutusu, Android TV, TV Box, APK İndir, Film İzle, Dizi İzle, Kumanda Uyumlu, Çevrimdışı İndirme, Ücretsiz Sinema">
+    <meta name="theme-color" content="#0a0a0d">
+    
+    <!-- OpenGraph Sosyal Medya Önizlemeleri -->
+    <meta property="og:title" content="SeyirKutusu - Sıradışı Sinema Kutusu">
+    <meta property="og:description" content="Android TV, TV Box ve telefonunuzda kesintisiz sinema keyfi. Hemen ücretsiz APK indirin.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://josephmckennedy.github.io/sk-app-update/banner.png">
+
+    <!-- Google Fonts: Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         :root {
-            --bg-color: #08080a;
-            --card-bg: rgba(22, 22, 26, 0.7);
+            --bg-dark: #08080a;
+            --bg-surface: #101014;
+            --bg-card: rgba(22, 22, 28, 0.75);
+            --bg-card-hover: rgba(30, 30, 38, 0.9);
             --primary-orange: #ff6a00;
+            --accent-pink: #ee0979;
             --primary-gradient: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
-            --text-color: #ffffff;
-            --text-muted: #a0a0a5;
-            --border-color: rgba(255, 106, 0, 0.15);
-            --glow-color: rgba(255, 106, 0, 0.4);
+            --glow-color: rgba(255, 106, 0, 0.45);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-focus: rgba(255, 106, 0, 0.35);
+            --text-primary: #ffffff;
+            --text-secondary: #9da0a8;
+            --text-muted: #65676e;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
             scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
             overflow-x: hidden;
+            line-height: 1.6;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 106, 0, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(238, 9, 121, 0.04) 0%, transparent 45%);
+                radial-gradient(circle at 15% 15%, rgba(255, 106, 0, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(238, 9, 121, 0.07) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 106, 0, 0.02) 0%, transparent 70%);
             background-attachment: fixed;
         }
 
-        /* Header / Navigation */
+        /* Glassmorphism Header */
         header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 8%;
-            position: fixed;
-            width: 100%;
-            top: 0;
+            padding: 18px 8%;
+            background: rgba(8, 8, 10, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
             z-index: 1000;
-            background: rgba(8, 8, 10, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo i {
-            -webkit-text-fill-color: initial;
-            color: var(--primary-orange);
-            text-shadow: 0 0 15px var(--glow-color);
-        }
-
-        .nav-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-color);
-            padding: 10px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
             transition: all 0.3s ease;
         }
 
-        .nav-btn:hover {
-            border-color: var(--primary-orange);
-            background: rgba(255, 106, 0, 0.1);
-            box-shadow: 0 0 15px rgba(255, 106, 0, 0.2);
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 20px;
+            box-shadow: 0 0 20px var(--glow-color);
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        .logo-text span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-orange);
+        }
+
+        .nav-cta {
+            background: rgba(255, 106, 0, 0.12);
+            border: 1px solid var(--border-focus);
+            color: var(--primary-orange) !important;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-gradient);
+            color: #000 !important;
+            border-color: transparent;
+            box-shadow: 0 0 20px var(--glow-color);
             transform: translateY(-2px);
         }
 
@@ -101,188 +160,369 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 120px 8% 60px 8%;
+            padding: 140px 8% 80px 8%;
             position: relative;
         }
 
-        .version-badge {
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 18px;
             background: rgba(255, 106, 0, 0.1);
-            border: 1px solid var(--border-color);
-            padding: 8px 16px;
-            border-radius: 20px;
+            border: 1px solid var(--border-focus);
+            border-radius: 50px;
             font-size: 13px;
             font-weight: 600;
             color: var(--primary-orange);
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 0 20px rgba(255, 106, 0, 0.05);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            animation: pulse 2s infinite;
+            margin-bottom: 28px;
+            box-shadow: 0 0 25px rgba(255, 106, 0, 0.15);
+            animation: pulse-glow 2.5s infinite;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0.3); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 106, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0); }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 106, 0, 0.15); }
+            50% { box-shadow: 0 0 30px rgba(255, 106, 0, 0.4); }
         }
 
         .hero h1 {
-            font-size: clamp(36px, 6vw, 68px);
+            font-size: clamp(38px, 5.5vw, 68px);
             font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            max-width: 900px;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            max-width: 950px;
         }
 
-        .hero h1 span {
+        .hero h1 span.gradient {
             background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            font-size: clamp(16px, 2.5vw, 20px);
-            color: var(--text-muted);
-            max-width: 650px;
+        .hero p.lead {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--text-secondary);
+            max-width: 720px;
             margin-bottom: 40px;
-            line-height: 1.6;
+            line-height: 1.65;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        .download-btn {
-            background: var(--primary-gradient);
-            color: #000;
-            font-weight: 800;
-            font-size: 18px;
-            padding: 18px 45px;
-            border-radius: 50px;
-            text-decoration: none;
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .btn-download-primary {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            box-shadow: 0 0 30px var(--glow-color);
+            gap: 14px;
+            background: var(--primary-gradient);
+            color: #000;
+            font-size: 19px;
+            font-weight: 800;
+            padding: 18px 46px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 8px 35px var(--glow-color);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .download-btn:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 0 45px rgba(255, 106, 0, 0.6);
+        .btn-download-primary:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 12px 45px rgba(255, 106, 0, 0.7);
             color: #000;
         }
 
+        .btn-subinfo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .btn-subinfo span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Device Compatibility Pills */
+        .device-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            max-width: 800px;
+            margin-top: 10px;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pill i {
+            color: var(--primary-orange);
+        }
+
+        /* 3-Column Highlights Strip */
+        .highlights-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 0 8% 60px 8%;
+            max-width: 1300px;
+            margin: -20px auto 40px auto;
+        }
+
+        .highlight-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .highlight-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 106, 0, 0.12);
+            color: var(--primary-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .highlight-text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .highlight-text p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
         /* Features Section */
-        .features-section {
-            padding: 100px 8%;
+        .section-features {
+            padding: 80px 8%;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .section-title {
+        .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
-        .section-title h2 {
-            font-size: clamp(28px, 4vw, 42px);
+        .section-tag {
+            color: var(--primary-orange);
+            font-size: 13px;
             font-weight: 800;
-            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            display: inline-block;
         }
 
-        .section-title p {
-            color: var(--text-muted);
+        .section-header h2 {
+            font-size: clamp(30px, 4vw, 44px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
             font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
         }
 
-        .feature-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+        .feature-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
             border-radius: 20px;
-            padding: 40px 30px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(10px);
+            padding: 34px 28px;
+            backdrop-filter: blur(14px);
+            transition: all 0.35s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(255, 106, 0, 0.05) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+        .feature-box:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-focus);
+            background: var(--bg-card-hover);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 25px rgba(255, 106, 0, 0.08);
         }
 
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--border-color);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 106, 0, 0.05);
+        .feature-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 22px;
         }
 
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 106, 0, 0.1);
+        .feature-icon-box {
+            width: 56px;
+            height: 56px;
             border-radius: 16px;
+            background: rgba(255, 106, 0, 0.1);
+            color: var(--primary-orange);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            color: var(--primary-orange);
-            margin-bottom: 24px;
-            border: 1px solid rgba(255, 106, 0, 0.1);
-            box-shadow: 0 0 15px rgba(255, 106, 0, 0.05);
+            border: 1px solid rgba(255, 106, 0, 0.15);
         }
 
-        .feature-card h3 {
-            font-size: 20px;
+        .feature-tag {
+            font-size: 11px;
             font-weight: 700;
-            margin-bottom: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
         }
 
-        .feature-card p {
-            color: var(--text-muted);
+        .feature-tag.hot {
+            background: rgba(255, 106, 0, 0.15);
+            color: var(--primary-orange);
+            border-color: var(--border-focus);
+        }
+
+        .feature-box h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .feature-box p {
+            color: var(--text-secondary);
+            font-size: 14.5px;
             line-height: 1.6;
-            font-size: 15px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* How to Install Section */
+        .section-install {
+            padding: 80px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 32px 24px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: #000;
+            font-weight: 900;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .step-card h4 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.55;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         /* Changelog Section */
-        .changelog-section {
-            padding: 80px 8%;
-            max-width: 800px;
-            margin: 0 auto 100px auto;
-            background: rgba(15, 15, 18, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            border-radius: 24px;
-            backdrop-filter: blur(15px);
+        .section-changelog {
+            padding: 60px 8% 80px 8%;
+            max-width: 880px;
+            margin: 0 auto;
         }
 
-        .changelog-header {
+        .changelog-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 36px 30px;
+            backdrop-filter: blur(14px);
+        }
+
+        .changelog-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 24px;
         }
 
-        .changelog-header h3 {
-            font-size: 22px;
+        .changelog-top h3 {
+            font-size: 20px;
             font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .changelog-top span.version {
+            background: rgba(255, 106, 0, 0.15);
+            color: var(--primary-orange);
+            border: 1px solid var(--border-focus);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
         }
 
         .changelog-list {
@@ -292,44 +532,118 @@
         .changelog-list li {
             position: relative;
             padding-left: 28px;
-            margin-bottom: 16px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            font-size: 15px;
+            margin-bottom: 14px;
+            color: var(--text-secondary);
+            font-size: 14.5px;
+            line-height: 1.55;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         .changelog-list li::before {
-            content: "\f00c";
-            font-family: "Font Awesome 5 Free";
+            content: "\f058";
+            font-family: "Font Awesome 6 Free";
             font-weight: 900;
             position: absolute;
             left: 0;
-            top: 2px;
+            top: 1px;
             color: var(--primary-orange);
-            font-size: 14px;
+            font-size: 15px;
+        }
+
+        /* FAQ Section */
+        .section-faq {
+            padding: 60px 8% 100px 8%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            margin-bottom: 14px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .faq-question i {
+            color: var(--primary-orange);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 24px 20px 24px;
+            color: var(--text-secondary);
+            font-size: 14.5px;
+            line-height: 1.6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: none;
+        }
+
+        .faq-item.active {
+            border-color: var(--border-focus);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
         }
 
         /* Footer */
         footer {
-            text-align: center;
+            border-top: 1px solid var(--border-subtle);
             padding: 40px 8%;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            text-align: center;
             color: var(--text-muted);
             font-size: 14px;
+            background: rgba(8, 8, 10, 0.95);
         }
 
-        footer a {
-            color: var(--primary-orange);
-            text-decoration: none;
+        footer p.disclaimer {
+            max-width: 750px;
+            margin: 12px auto 0 auto;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #55575e;
         }
 
-        /* Responsive adjustments */
+        /* Responsive */
         @media (max-width: 768px) {
             header {
                 padding: 16px 5%;
             }
+            nav {
+                display: none;
+            }
             .hero {
-                padding-top: 140px;
+                padding: 120px 5% 60px 5%;
+            }
+            .highlights-strip,
+            .section-features,
+            .section-install,
+            .section-changelog,
+            .section-faq {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+            .btn-download-primary {
+                width: 100%;
+                justify-content: center;
+                padding: 16px 24px;
+                font-size: 17px;
             }
         }
     </style>
@@ -338,145 +652,328 @@
 
     <!-- Header -->
     <header>
-        <div class="logo">
-            <i class="fa-solid fa-box-open"></i> SeyirKutusu
-        </div>
+        <a href="#" class="logo-wrap">
+            <div class="logo-icon">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div class="logo-text">Seyir<span>Kutusu</span></div>
+        </a>
+        <nav>
+            <a href="#ozellikler">Özellikler</a>
+            <a href="#kurulum">Kurulum</a>
+            <a href="#degisiklikler">Yenilikler</a>
+            <a href="#sss">SSS</a>
+            <a href="https://josephmckennedy.github.io/sk-app-update/app-release.apk" class="nav-cta" id="navDownloadBtn">
+                <i class="fa-solid fa-download"></i> İndir
+            </a>
+        </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="version-badge" id="versionBadge">
-            <i class="fa-solid fa-circle-nodes"></i> Denetleniyor...
+        <div class="hero-badge" id="heroBadge">
+            <i class="fa-solid fa-sparkles"></i>
+            <span>Son Sürüm: v12.0 Yayınlandı</span>
         </div>
-        <h1>Android TV & Mobil İçin<br><span>Sıradışı Sinema Kutusu</span></h1>
-        <p>Evinizdeki televizyonda veya cebinizdeki telefonda, en sevdiğiniz film ve dizileri kusursuz bir kumanda deneyimi ve otomatik altyazı/ses seçenekleriyle hemen izleyin.</p>
-        <a href="https://josephmckennedy.github.io/sk-app-update/app-release.apk" class="download-btn">
-            <i class="fa-solid fa-download"></i> Hemen APK İndir
-        </a>
+
+        <h1>
+            Android TV & Mobil İçin<br>
+            <span class="gradient">Kusursuz Sinema Kutusu</span>
+        </h1>
+
+        <p class="lead">
+            Evinizdeki televizyonda veya cebinizdeki telefonda; yüz binlerce film ve diziyi ultra hızlı oynatıcı, otomatik dublaj/altyazı seçenekleri ve çevrimdışı indirme özgürlüğüyle hemen izleyin.
+        </p>
+
+        <div class="cta-container">
+            <a href="https://josephmckennedy.github.io/sk-app-update/app-release.apk" class="btn-download-primary" id="mainDownloadBtn">
+                <i class="fa-solid fa-download"></i>
+                <span>Hemen APK İndir (v<span id="heroVer">12.0</span>)</span>
+            </a>
+            <div class="btn-subinfo">
+                <span><i class="fa-solid fa-shield-halved" style="color:#00e676"></i> %100 Güvenli & Reklamsız Sinema</span>
+                <span>•</span>
+                <span><i class="fa-brands fa-android" style="color:#29b6f6"></i> Android 5.0+</span>
+            </div>
+        </div>
+
+        <!-- Uyumlu Cihazlar -->
+        <div class="device-pills">
+            <div class="pill"><i class="fa-solid fa-tv"></i> Android TV</div>
+            <div class="pill"><i class="fa-solid fa-layer-group"></i> Google TV</div>
+            <div class="pill"><i class="fa-solid fa-box"></i> Mi Box & TV Box</div>
+            <div class="pill"><i class="fa-solid fa-mobile-screen"></i> Akıllı Telefon</div>
+            <div class="pill"><i class="fa-solid fa-tablet-screen-button"></i> Tablet</div>
+            <div class="pill"><i class="fa-solid fa-gamepad"></i> Kumanda Odaklı (D-Pad)</div>
+        </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="section-title">
-            <h2>Öne Çıkan Özellikler</h2>
-            <p>SeyirKutusu, televizyonunuzu fütüristik bir sinema merkezine dönüştürmek için tasarlandı.</p>
+    <!-- Highlights 3'lü Şerit -->
+    <div class="highlights-strip">
+        <div class="highlight-item">
+            <div class="highlight-icon">
+                <i class="fa-solid fa-bolt-lightning"></i>
+            </div>
+            <div class="highlight-text">
+                <h4>Akıllı Hız Yarışı</h4>
+                <p>En kaliteli yayını milisaniyeler içinde çözer ve anında oynatır.</p>
+            </div>
+        </div>
+        <div class="highlight-item">
+            <div class="highlight-icon">
+                <i class="fa-solid fa-cloud-arrow-down"></i>
+            </div>
+            <div class="highlight-text">
+                <h4>Çevrimdışı İndirme</h4>
+                <p>İnternetsiz ortamlarda tüm altyazılarıyla birlikte keyifle izleyin.</p>
+            </div>
+        </div>
+        <div class="highlight-item">
+            <div class="highlight-icon">
+                <i class="fa-solid fa-sliders"></i>
+            </div>
+            <div class="highlight-text">
+                <h4>Düşük Donanım Modu ⚡</h4>
+                <p>Eski TV Box ve telefonlarda bile sıfır donma ve akıcı performans.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Özellikler -->
+    <section class="section-features" id="ozellikler">
+        <div class="section-header">
+            <span class="section-tag">Neler Sunuyoruz?</span>
+            <h2>Seyir Deneyiminizi Zirveye Taşıyan Detaylar</h2>
+            <p>Kullanıcı dostu, kumandayla mükemmel uyumlu ve zengin fonksiyonlarla donatılmış yeni nesil eğlence merkezi.</p>
         </div>
 
         <div class="features-grid">
-            <!-- Feature 1 -->
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fa-solid fa-tv"></i>
+            <!-- 1 -->
+            <div class="feature-box">
+                <div class="feature-top">
+                    <div class="feature-icon-box">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <span class="feature-tag hot">TV & Mobil</span>
                 </div>
                 <h3>Android TV & Kumanda Uyumlu</h3>
-                <p>Leanback donanım hızlandırmalı odak aracı (D-Pad) sayesinde yatağınızdan kalkmadan yön tuşlarıyla tüm uygulamayı zahmetsizce yönetin.</p>
+                <p>Özel D-Pad yön tuşlarıyla yatağınızdan kalkmadan televizyonunuzu zahmetsizce yönetin. Dokunmatik ekranlarda ise modern ve akıcı jest kontrolleri.</p>
             </div>
 
-            <!-- Feature 2 -->
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fa-solid fa-play"></i>
+            <!-- 2 -->
+            <div class="feature-box">
+                <div class="feature-top">
+                    <div class="feature-icon-box">
+                        <i class="fa-solid fa-circle-down"></i>
+                    </div>
+                    <span class="feature-tag hot">Yeni</span>
                 </div>
-                <h3>Gelişmiş ExoPlayer Oynatıcı</h3>
-                <p>Tek dokunuşla ekranı kaplama (Fit/Zoom/Stretch), dublaj/altyazı geçişleri ve kumandanın yön tuşlarıyla 10s ileri-geri sarma kolaylığı.</p>
+                <h3>Çevrimdışı İndirme & Seyahat Modu</h3>
+                <p>İster uçakta, ister metroda veya tatilde olun. Film ve dizileri cihazınıza kaydedin; internet bağlantınız olmasa dahi kesintisiz izleyin.</p>
             </div>
 
-            <!-- Feature 3 -->
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
+            <!-- 3 -->
+            <div class="feature-box">
+                <div class="feature-top">
+                    <div class="feature-icon-box">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <span class="feature-tag hot">⚡ Hızlı Mod</span>
                 </div>
-                <h3>İzlemeye Devam Et & Geçmiş</h3>
-                <p>Nerede kaldığınızı saniyesine kadar hatırlar, kaldığınız yerden devam etmenizi sağlar. Arama geçmişiyle tek tıkla yeniden aratın.</p>
+                <h3>Düşük Donanım Modu (Hızlı Performans)</h3>
+                <p>Giriş seviyesi telefonlar ve eski nesil TV Box'lar için geliştirilen bu mod; arka plan yüklerini minimize eder ve oynatıcıyı anında başlatır.</p>
             </div>
 
-            <!-- Feature 4 -->
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fa-solid fa-cloud-arrow-down"></i>
+            <!-- 4 -->
+            <div class="feature-box">
+                <div class="feature-top">
+                    <div class="feature-icon-box">
+                        <i class="fa-solid fa-closed-captioning"></i>
+                    </div>
+                    <span class="feature-tag">Akıllı Çözücü</span>
                 </div>
-                <h3>Uygulama İçi Otomatik Güncelleme</h3>
-                <p>Yeni bir güncelleme çıktığında uygulama sizi uyarır, indirme barı ile arka planda dosyayı çekip saniyeler içinde yeni sürüme kurar.</p>
+                <h3>Otomatik Altyazı & Dublaj Seçimi</h3>
+                <p>Türkçe dublaj ve orijinal ses parçaları arasında tek tıkla geçiş yapın. SubDL ve OpenSubtitles entegrasyonuyla tüm dillerde senkron altyazılar emrinizde.</p>
             </div>
 
-            <!-- Feature 5 -->
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fa-solid fa-compass"></i>
+            <!-- 5 -->
+            <div class="feature-box">
+                <div class="feature-top">
+                    <div class="feature-icon-box">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <span class="feature-tag">Akıllı Hafıza</span>
                 </div>
-                <h3>İnteraktif Hikayeler & Keşfet</h3>
-                <p>Film detaylarına hızlıca göz atabileceğiniz fütüristik animasyonlu hikaye halkaları ve modunuza göre film öneren etiket paneli.</p>
+                <h3>Kaldığın Yerden Devam Et</h3>
+                <p>Hangi filmde veya dizinin hangi saniyesinde kaldığınızı asla unutmaz. Ana ekrandan veya detay sayfasından tek dokunuşla kaldığınız yerden sürdürün.</p>
             </div>
 
-            <!-- Feature 6 -->
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fa-solid fa-bolt"></i>
+            <!-- 6 -->
+            <div class="feature-box">
+                <div class="feature-top">
+                    <div class="feature-icon-box">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <span class="feature-tag">Sosyal</span>
                 </div>
-                <h3>Maksimum Donanım Optimizasyonu</h3>
-                <p>Gereksiz animasyon yüklerinden arındırılmış arayüz. En zayıf Android TV boxlarda bile kasmadan, akıcı çalışan arayüz motoru.</p>
+                <h3>Birlikte İzle (Watch Party)</h3>
+                <p>Farklı şehirlerde veya mekanlardaki arkadaşlarınızla oda kodu oluşturup aynı anda aynı filmi eşzamanlı izleyin ve sinema keyfini paylaşın.</p>
             </div>
         </div>
     </section>
 
-    <!-- Changelog Section -->
-    <section class="changelog-section">
-        <div class="changelog-header">
-            <h3>Son Değişiklikler</h3>
-            <span id="versionText" style="font-weight: 600; color: var(--primary-orange)">Sürüm Yükleniyor...</span>
+    <!-- Kurulum Rehberi -->
+    <section class="section-install" id="kurulum">
+        <div class="section-header">
+            <span class="section-tag">Nasıl Yüklenir?</span>
+            <h2>3 Basit Adımda Seyire Başlayın</h2>
+            <p>Android cihazınıza yüklemek ve saniyeler içinde film dünyasına adım atmak çok kolay.</p>
         </div>
-        <ul class="changelog-list" id="changelogList">
-            <li>Detaylar sorgulanıyor...</li>
-        </ul>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h4>APK Dosyasını İndirin</h4>
+                <p>Yukarıdaki veya aşağıdaki "Hemen İndir" butonuna tıklayarak en güncel SeyirKutusu kurulum paketini cihazınıza indirin.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h4>Bilinmeyen Kaynaklara İzin Verin</h4>
+                <p>Tarayıcınız veya dosya yöneticinizin kurulum iznini (Güvenlik ayarlarından "Bilinmeyen Kaynaklar") bir defaya mahsus onaylayın.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h4>Yükleyin ve Keyfini Çıkarın</h4>
+                <p>İndirilen dosyaya dokunup "Yükle" deyin. TV kullanıcıları flash bellek veya <em>Send Files to TV</em> uygulamasıyla TV'ye rahatça gönderebilir.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sürüm Notları (Changelog) -->
+    <section class="section-changelog" id="degisiklikler">
+        <div class="changelog-card">
+            <div class="changelog-top">
+                <h3><i class="fa-solid fa-code-branch" style="color:var(--primary-orange)"></i> Sürüm Yenilikleri</h3>
+                <span class="version" id="versionTag">v12.0</span>
+            </div>
+            <ul class="changelog-list" id="changelogList">
+                <li>Düşük donanımlı cihazlar ve TV Box modelleri için Hızlı Performans Modu ⚡</li>
+                <li>Çevrimdışı indirme motoru güçlendirildi; tüm altyazılarıyla internetsiz izleme.</li>
+                <li>Android TV ve kumanda (D-Pad) odaklanma akıcılığı artırıldı.</li>
+                <li>Gelişmiş çoklu kaynak yarış motoru ile en hızlı yayını anında açma.</li>
+                <li>Yayınlanmamış ve tarihi gelmemiş bölümler için akıllı koruma ve bilgilendirme.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SSS -->
+    <section class="section-faq" id="sss">
+        <div class="section-header">
+            <span class="section-tag">Merak Edilenler</span>
+            <h2>Sıkça Sorulan Sorular</h2>
+        </div>
+
+        <div class="faq-item active">
+            <div class="faq-question">
+                <span>SeyirKutusu televizyonumda çalışır mı?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Evet! Android TV, Google TV, Xiaomi Mi Box, Next, Stick ve tüm Android tabanlı TV modelleriyle tam uyumludur. Kumandanızın yön ve OK tuşlarıyla yağ gibi kayan özel TV arayüzüne sahiptir.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Uygulama ücretli mi? Abonelik gerekiyor mu?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Hayır, SeyirKutusu tamamen ücretsizdir. Herhangi bir abonelik veya kart bilgisi gerektirmez.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>İndirdiğim film veya dizileri internetsiz nasıl izleyebilirim?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                İçerik detayında indirme butonuna dokunup cihazınıza kaydettikten sonra, mobil veri ve Wi-Fi kapalı olsa dahi "İndirmeler" veya "Kütüphanem" sekmesinden tüm altyazılarıyla birlikte izleyebilirsiniz.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Uygulama güncellemeleri nasıl yapılıyor?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                SeyirKutusu yerleşik otomatik güncelleme desteğine sahiptir. Yeni bir sürüm çıktığında uygulama açılışında size bildirilir ve tek bir tıklamayla uygulama içinden güncellenir.
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 SeyirKutusu. Tüm Hakları Saklıdır.</p>
+        <p>&copy; 2026 <strong>SeyirKutusu</strong>. Tüm Hakları Saklıdır.</p>
+        <p class="disclaimer">
+            SeyirKutusu üçüncü taraf açık internet kaynaklarından içerik derleyen bir medya istemcisidir. Sunucularında hiçbir video veya telifli dosya barındırmaz.
+        </p>
     </footer>
 
-    <!-- JS to dynamic versioning from update.json -->
+    <!-- Canlı Güncelleme Çekici JS -->
     <script>
+        // SSS Accordion
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // GitHub üzerinden en son sürüm ve APK linkini anlık doğrulama
         const UPDATE_JSON_URL = 'https://raw.githubusercontent.com/JosephMCKennedy/sk-app-update/refs/heads/main/update.json';
 
-        async function fetchUpdateInfo() {
+        async function syncLatestVersion() {
             try {
-                const response = await fetch(UPDATE_JSON_URL);
-                if (response.ok) {
-                    const data = await response.json();
-                    
-                    // Update Version Badge
-                    const badge = document.getElementById('versionBadge');
-                    badge.innerHTML = `<i class="fa-solid fa-sparkles"></i> Son Sürüm: v${data.versionName}`;
-                    
-                    // Update Changelog Header Version Text
-                    const versionText = document.getElementById('versionText');
-                    versionText.innerText = `Sürüm v${data.versionName}`;
-                    
-                    // Update Changelog List
-                    const list = document.getElementById('changelogList');
-                    list.innerHTML = '';
-                    
-                    if (data.changelog && data.changelog.length > 0) {
-                        data.changelog.forEach(change => {
-                            const li = document.createElement('li');
-                            li.innerText = change;
-                            list.appendChild(li);
-                        });
-                    } else {
-                        list.innerHTML = '<li>Bu sürüm için detaylı değişiklik girilmemiştir.</li>';
+                const res = await fetch(UPDATE_JSON_URL);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.versionName) {
+                        const vBadge = document.getElementById('heroBadge');
+                        if (vBadge) vBadge.innerHTML = `<i class="fa-solid fa-sparkles"></i> <span>Son Sürüm: v${data.versionName} Yayınlandı</span>`;
+                        
+                        const hVer = document.getElementById('heroVer');
+                        if (hVer) hVer.innerText = data.versionName;
+
+                        const vTag = document.getElementById('versionTag');
+                        if (vTag) vTag.innerText = `v${data.versionName}`;
+                    }
+                    if (data.apkUrl) {
+                        const mBtn = document.getElementById('mainDownloadBtn');
+                        if (mBtn) mBtn.href = data.apkUrl;
+                        const nBtn = document.getElementById('navDownloadBtn');
+                        if (nBtn) nBtn.href = data.apkUrl;
+                    }
+                    if (data.changelog && Array.isArray(data.changelog) && data.changelog.length > 0) {
+                        const cList = document.getElementById('changelogList');
+                        if (cList) {
+                            cList.innerHTML = '';
+                            data.changelog.forEach(item => {
+                                const li = document.createElement('li');
+                                li.innerText = item;
+                                cList.appendChild(li);
+                            });
+                        }
                     }
                 }
-            } catch (error) {
-                console.error('Update bilgisi çekilemedi:', error);
-                document.getElementById('versionBadge').innerText = 'Sürüm: Bilinmiyor';
-                document.getElementById('versionText').innerText = 'Hata';
-                document.getElementById('changelogList').innerHTML = '<li>Sürüm notları şu an yüklenemedi.</li>';
+            } catch (err) {
+                console.log('Update sync skipped or offline:', err);
             }
         }
 
-        // Run fetch on load
-        window.addEventListener('DOMContentLoaded', fetchUpdateInfo);
+        window.addEventListener('DOMContentLoaded', syncLatestVersion);
     </script>
 </body>
 </html>
