@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeyirKutusu - Film & Dizi Paylaşımı</title>
+    
+    <!-- Open Graph / Sosyal Medya Önizleme Etiketleri -->
+    <meta property="og:type" content="video.other">
+    <meta property="og:site_name" content="SeyirKutusu">
+    <meta id="og-title" property="og:title" content="SeyirKutusu - Ücretsiz Film, Dizi ve Reels">
+    <meta id="og-desc" property="og:description" content="Bu içeriği SeyirKutusu uygulamasında reklamsız, donmasız ve yüksek kalitede izleyin.">
+    <meta id="og-image" property="og:image" content="https://seyirkutusu.space/icon.png">
+    <meta name="theme-color" content="#FF6F00">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: #090A0F;
+            color: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Arka plan ışık efektleri */
+        .bg-glow-1 {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(255, 111, 0, 0.28) 0%, rgba(255, 111, 0, 0) 70%);
+            filter: blur(50px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            bottom: -80px;
+            right: 10%;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.20) 0%, rgba(147, 51, 234, 0) 70%);
+            filter: blur(50px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 440px;
+            width: 100%;
+            background: rgba(18, 20, 29, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 28px 24px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 111, 0, 0.12);
+            border: 1px solid rgba(255, 111, 0, 0.35);
+            color: #FF8C00;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .poster-wrapper {
+            position: relative;
+            width: 170px;
+            height: 250px;
+            margin: 0 auto 20px auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: #141722;
+        }
+
+        .poster-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .type-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #FFB300;
+            border: 1px solid rgba(255, 179, 0, 0.3);
+        }
+
+        .content-title {
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 8px;
+            color: #FFFFFF;
+        }
+
+        .content-desc {
+            font-size: 13px;
+            color: #9CA3AF;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .actions-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
+            color: #000000;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 800;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(255, 111, 0, 0.35);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            color: #E5E7EB;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-secondary:active {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #6B7280;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <div class="container">
+        <div class="app-badge">
+            <span>🎬</span> SEYİRKUTUSU'NDA PAYLAŞILDI
+        </div>
+
+        <div class="poster-wrapper">
+            <span id="contentTypeTag" class="type-tag">İÇERİK</span>
+            <img id="contentPoster" src="https://seyirkutusu.space/icon.png" alt="Afiş">
+        </div>
+
+        <h1 id="contentTitle" class="content-title">İçerik Yükleniyor...</h1>
+        <p id="contentDesc" class="content-desc">Bu içeriği ve binlerce film, dizi ve kısa diziyi SeyirKutusu uygulamasında kesintisiz izleyebilirsiniz.</p>
+
+        <div class="actions-group">
+            <!-- Uygulaması olanlar için doğrudan uygulamayı tetikleyen buton -->
+            <a id="btnOpenApp" href="#" class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+                Uygulamada Aç ve İzle
+            </a>
+
+            <!-- Uygulaması olmayanlar için ana indirme sayfasına yönlendiren buton -->
+            <a id="btnDownload" href="https://seyirkutusu.space/" class="btn-secondary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
+                SeyirKutusu Uygulamasını İndir (APK)
+            </a>
+        </div>
+
+        <div class="footer-note">
+            SeyirKutusu © 2026 • Sinema Cebinizde
+        </div>
+    </div>
+
+    <script>
+        // URL parametrelerini ayrıştır (?type=movie&id=550&slug=...&title=...&poster=...)
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get('type') || 'movie';
+        const id = params.get('id') || '';
+        const slug = params.get('slug') || '';
+        const title = params.get('title') || 'SeyirKutusu İçeriği';
+        const poster = params.get('poster') || '';
+
+        // UI Alanlarını Doldur
+        if (title) {
+            document.getElementById('contentTitle').innerText = title;
+            document.title = title + " - SeyirKutusu";
+            document.getElementById('og-title').setAttribute('content', title + " - SeyirKutusu");
+        }
+
+        if (poster && poster.startsWith('http')) {
+            document.getElementById('contentPoster').src = poster;
+            document.getElementById('og-image').setAttribute('content', poster);
+        }
+
+        // İçerik Türü Etiketi
+        const tag = document.getElementById('contentTypeTag');
+        if (type === 'reels') {
+            tag.innerText = '🍿 REELS DİZİSİ';
+        } else if (type === 'tv') {
+            tag.innerText = '📺 DİZİ';
+        } else {
+            tag.innerText = '🎬 FİLM';
+        }
+
+        // Uygulama Derin Bağlantı Linki (Deep Link URL)
+        let appSchemeUrl = `seyirkutusu://content?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}&slug=${encodeURIComponent(slug)}&title=${encodeURIComponent(title)}&poster=${encodeURIComponent(poster)}`;
+
+        const openBtn = document.getElementById('btnOpenApp');
+        openBtn.href = appSchemeUrl;
+
+        // Mobil Android cihazda açıldıysa otomatik olarak uygulamayı tetikle
+        const isAndroid = /Android/i.test(navigator.userAgent);
+        if (isAndroid) {
+            // Kullanıcıyı hemen uygulamaya fırlatmayı dene
+            setTimeout(() => {
+                window.location.href = appSchemeUrl;
+            }, 300);
+        }
+    </script>
+</body>
+</html>
